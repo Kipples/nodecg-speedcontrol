@@ -327,7 +327,31 @@ $(function () {
 		else alert("The new time is in the wrong format.");
 	}
 
+  function OnKeyPressed() {
+    switch(stopWatchReplicant.value.state) {
+    case 'finished':
+      OnReset()
+      break
+    case 'stopped':
+      OnPlay()
+      break
+    case 'running':
+      OnStop()
+      break
+    case 'paused':
+      OnPlay()
+      break
+    }
+  }
+
     function playerTimer_InitializeElements() {
+
+      $( document ).keydown(function(event) {
+        switch(event.which) {
+        case 83:
+          OnKeyPressed()
+        }
+      })
 
         $("#play").button({
             text: false,
